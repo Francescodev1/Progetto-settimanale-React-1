@@ -1,61 +1,16 @@
-/*
-import { Component } from "react";
-import MySingleFilm from "./MySingleFilm";
-
-class FilmList2 extends Component {
-  state = {
-    searchQuery: "superman",
-    filmData: [],
-  };
-
-  filmDataFetch = async () => {
-    const apiKey = "a3f6210f";
-
-    try {
-      const respons = await fetch(`http://www.omdbapi.com/?s=${this.state.searchQuery}&apikey=${apiKey}`);
-      if (!respons.ok) {
-        throw new Error("Errore richiesta API");
-      }
-      const filmDataObj = await respons.json();
-      this.setState({ filmData: filmDataObj.Search });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  componentDidMount() {
-    this.filmDataFetch();
-  }
-  render() {
-    return (
-      <>
-        <h4 className="text-white pb-2">{this.state.searchQuery.toUpperCase()}</h4>
-        <div className="d-flex">
-          {this.state.filmData.slice(0, 7).map((film, index) => (
-            <MySingleFilm key={index} imageUrl={film.Poster} />
-          ))}
-        </div>
-      </>
-    );
-  }
-}
-
-export default FilmList2;
-
-*/
-
-
-
 import React, { useState, useEffect } from 'react';
 import MySingleFilm from './MySingleFilm';
+import { ThreeDots } from 'react-loader-spinner';
+
 
 const FilmList2 = () => {
   const [filmData, setFilmData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false); // Aggiunto stato di caricamento
   const [error, setError] = useState(null);
   const searchQuery = "john";
 
   const filmDataFetch = async () => {
-    
+    setIsLoading(true); // Imposta il caricamento a true
     try {
       const response = await fetch(`http://www.omdbapi.com/?apikey=4689a86b&s=${searchQuery}`);
       if (!response.ok) {
@@ -65,12 +20,19 @@ const FilmList2 = () => {
       setFilmData(filmDataObj.Search);
     } catch (error) {
       setError(error.message);
+    } finally {
+      setIsLoading(false); // Imposta il caricamento a false quando finisci
     }
   };
 
   useEffect(() => {
     filmDataFetch();
-  }, []); // Dipendenza vuota per eseguire solo al montaggio
+  }, []); 
+
+  if (isLoading) {
+    // Mostra il loader quando i dati sono in fase di caricamento
+    return <ThreeDots type="ThreeDots" color="#00BFFF" height={80} width={80} />;
+  }
 
   return (
     <>

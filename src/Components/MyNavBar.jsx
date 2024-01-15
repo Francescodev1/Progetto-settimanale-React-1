@@ -1,17 +1,17 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
-import Logo from "../netflix-clone/assets/logo.png";
+import Logo from "../netflixClone/assets/logo.png";
 import { FaSearch, FaBell, FaUser } from "react-icons/fa";
 
 const MyNavbar = () => {
   return (
     <Navbar expand="lg" variant="dark" className="justify-content-between align-items-center px-4 bg-dark">
-        <div className="d-flex align-items-center font-weight-bold"> 
+        <div className="d-flex align-items-center font-weight-bold justify-content-between"> 
            <Navbar.Brand href="#">
             <img src={Logo} alt="Logo" style={{ width: "100px", height: "55px" }} />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Nav className="mr-auto">
+            <Nav className="mr-auto  d-xs-none d-sm-none d-md-flex">
                 <Nav.Link href="#">Home</Nav.Link>
                 <Nav.Link href="#">TV Shows</Nav.Link>
                 <Nav.Link href="#">Movies</Nav.Link>

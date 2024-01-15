@@ -1,7 +1,11 @@
 body {
         margin: 0;
         background-color: #221f1f;
+
+
       }
+
+
 
       h2,
       h4,
@@ -65,3 +69,16 @@ body {
       .col img:hover {
         transform: scale(1.1);
       }
+
+
+
+
+
+  .cardhover:hover {
+    transform: scale(1.1);
+  }
+ 
+
+  footer p a{
+    text-decoration: none;
+  }
